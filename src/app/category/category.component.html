@@ -1,0 +1,224 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"> Management System</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <button
+          class="btn btn-outline-success"
+          data-bs-toggle="modal"
+          data-bs-target="#addEmployee"
+          type="submit"
+        >
+          Add Category
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Category ID</th>
+        <th scope="col">CatName</th>
+        <th scope="col">SubCat</th>
+        <th scope="col">SubCatDesc</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of catList">
+        <td>{{ category.id }}</td>
+        <td>{{ category.CatName }}</td>
+        <td>{{ category.SubCat }}</td>
+        <td>{{ category.SubCatDesc }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-outline-primary me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#editcategory"
+            (click)="editCategory(category)"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="deleteCategory(category)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Add employee modal -->
+  <div
+    class="modal fade"
+    id="addEmployee"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new Category</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="catDetail">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >CatName
+              </label>
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                id="name"
+                aria-describedby="subHelp"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">SubCat </label>
+              <input
+                type="text"
+                formControlName="SubCat"
+                class="form-control"
+                id="SubCat"
+                aria-describedby="subHelp"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >SubCatDesc
+              </label>
+              <input
+                type="text"
+                formControlName="salary"
+                class="form-control"
+                id="SubCatDesc"
+                aria-describedby="subHelp"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                (click)="addCategory()"
+              >
+                Add Category
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit employee modal -->
+  <div
+    class="modal fade"
+    id="editCategory"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Edit Category details
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="catDetail">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >CatName
+              </label>
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                id="name"
+                aria-describedby="SubCat"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">SubCat </label>
+              <input
+                type="text"
+                formControlName="SubCat"
+                class="form-control"
+                id="SubCat"
+                aria-describedby="SubHelp"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >SubCatdesc
+              </label>
+              <input
+                type="text"
+                formControlName="SubCatDesc"
+                class="form-control"
+                id="SubCatDesc"
+                aria-describedby="SubHelp"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                (click)="updateCategory()"
+                data-bs-dismiss="modal"
+              >
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
